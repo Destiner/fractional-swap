@@ -1,0 +1,41 @@
+{
+  "name": "starter-app",
+  "version": "1.0.0",
+  "description": "Starter Vue app",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Destiner/starter-app.git"
+  },
+  "scripts": {
+    "build": "vite build",
+    "serve": "vite",
+    "lint": "npm run lint:prettier && npm run lint:eslint && npm run lint:stylelint",
+    "lint:prettier": "prettier -c \"src/**/*.{json,js,ts,vue}\"",
+    "lint:eslint": "eslint \"src/**/*.{js,ts,vue}\"",
+    "lint:stylelint": "stylelint \"src/**/*.{css,vue}\""
+  },
+  "dependencies": {
+    "vue": "3.2.31",
+    "vue-router": "4.0.14"
+  },
+  "devDependencies": {
+    "@babel/types": "7.17.0",
+    "@typescript-eslint/eslint-plugin": "5.16.0",
+    "@typescript-eslint/parser": "5.16.0",
+    "@vitejs/plugin-vue": "2.2.4",
+    "@vue/compiler-sfc": "3.2.31",
+    "eslint": "8.12.0",
+    "eslint-import-resolver-typescript": "2.7.0",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-vue": "8.5.0",
+    "prettier": "2.6.1",
+    "stylelint": "14.6.1",
+    "stylelint-config-property-sort-order-smacss": "9.0.0",
+    "stylelint-config-recommended-vue": "1.4.0",
+    "stylelint-config-standard": "25.0.0",
+    "typescript": "4.6.3",
+    "vite": "2.8.6",
+    "vue-tsc": "0.33.9"
+  }
+}
