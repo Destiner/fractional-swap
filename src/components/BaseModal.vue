@@ -74,6 +74,8 @@ function close() {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 0 8px;
   font-size: 24px;
 }
 
