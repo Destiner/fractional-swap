@@ -37,6 +37,13 @@ const label = computed(() => {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 8px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.chip:hover {
+  background: #eee;
 }
 
 .icon {
