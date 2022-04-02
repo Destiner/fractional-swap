@@ -36,7 +36,7 @@ defineProps({
   },
 });
 
-const amountOut = ref('');
+const amountOut = ref('0');
 </script>
 
 <style>
