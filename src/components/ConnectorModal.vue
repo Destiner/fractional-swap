@@ -1,7 +1,7 @@
 <template>
   <BaseModal
     :open="open"
-    :title="'Wallet'"
+    :title="'Wallet Type'"
     @close="close"
   >
     <div
