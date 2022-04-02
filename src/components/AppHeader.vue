@@ -1,11 +1,18 @@
 <template>
   <div class="header">
     <div>fractional.swap</div>
-    <div v-if="!isConnected">
+    <div v-if="!address">
       <button @click="connect">connect</button>
     </div>
     <div v-else>
-      <button @click="disconnect">disconnect</button>
+      <WalletChip
+        :address="address"
+        @click="openModal"
+      />
+      <WalletModal
+        :open="isModalOpen"
+        @close="closeModal"
+      />
     </div>
   </div>
 </template>
@@ -14,27 +21,38 @@
   setup
   lang="ts"
 >
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
-import { EthereumService } from '../services';
-import { useWalletStore } from '../stores';
+import WalletChip from './WalletChip.vue';
+import WalletModal from './WalletModal.vue';
+
+import { EthereumService } from '@/services';
+import { useWalletStore } from '@/stores';
 
 const store = useWalletStore();
-
-const isConnected = computed(() => store.isConnected);
+const address = computed(() => store.address);
 
 async function connect() {
   const service = new EthereumService('metamask');
-  await service.connect();
-  const balance = await service.getBalance();
+  const address = await service.connect();
   store.connect('metamask');
+  if (address) {
+    store.setAddress(address);
+  }
+  const balance = await service.getBalance();
   if (balance) {
     store.setBalance(balance);
   }
 }
 
-function disconnect() {
-  store.disconnect();
+const isModalOpen = ref(false);
+
+function openModal() {
+  isModalOpen.value = true;
+}
+
+function closeModal() {
+  isModalOpen.value = false;
 }
 </script>
 
