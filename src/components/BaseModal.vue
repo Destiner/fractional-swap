@@ -58,11 +58,15 @@ function close() {
 }
 
 .view {
+  display: flex;
   position: fixed;
   top: 50vh;
   left: 50vw;
+  flex-direction: column;
   min-width: 360px;
   max-width: 100%;
+  height: 520px;
+  max-height: 80%;
   padding: 8px;
   transform: translate(-50%, -50%);
   border: 1px solid #ccc;
