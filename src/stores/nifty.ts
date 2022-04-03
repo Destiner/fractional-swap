@@ -1,19 +1,22 @@
 import { defineStore } from 'pinia';
+import { computed, ref } from 'vue';
 
 import type { Vault } from '../services';
 
 const useStore = defineStore('nifty', () => {
-  const collectionVaults: Record<string, Vault[]> = {};
+  const collectionVaults = ref<Record<string, Vault[]>>({});
 
   function addCollection(collection: string, vaults: Vault[]) {
-    collectionVaults[collection] = vaults;
+    collectionVaults.value[collection] = vaults;
   }
 
-  function getVaults(collection: string) {
-    return collectionVaults[collection];
+  const collections = computed(() => Object.keys(collectionVaults.value));
+
+  function getVaults(collection: string): Vault[] {
+    return collectionVaults.value[collection];
   }
 
-  return { addCollection, getVaults };
+  return { addCollection, collections, getVaults };
 });
 
 export default useStore;
