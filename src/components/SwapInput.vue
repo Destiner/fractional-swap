@@ -12,7 +12,17 @@
     </div>
     <div class="output">
       <div class="amount-label">{{ amountOut }}</div>
-      <div class="coin">{{ assetOut }}</div>
+      <div
+        class="coin"
+        @click="openModal"
+      >
+        {{ assetOut }}
+      </div>
+      <AssetModal
+        :open="isModalOpen"
+        @close="closeModal"
+        @select="handleModalSelect"
+      />
     </div>
   </div>
 </template>
@@ -23,6 +33,7 @@
 >
 import { ref } from 'vue';
 
+import AssetModal from './AssetModal.vue';
 import IconArrowDown from './icons/IconArrowDown.vue';
 
 defineProps({
@@ -37,6 +48,20 @@ defineProps({
 });
 
 const amountOut = ref('0');
+
+const isModalOpen = ref(false);
+
+function openModal() {
+  isModalOpen.value = true;
+}
+
+function closeModal() {
+  isModalOpen.value = false;
+}
+
+function handleModalSelect() {
+  isModalOpen.value = false;
+}
 </script>
 
 <style>
@@ -62,9 +87,16 @@ input {
 
 .coin {
   width: 80px;
+  padding: 4px;
   overflow: hidden;
+  border-radius: 4px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  cursor: pointer;
+}
+
+.coin:hover {
+  background: #eee;
 }
 
 .icon-wrapper {
