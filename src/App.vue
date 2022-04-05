@@ -14,6 +14,8 @@ import AppHeader from '@/components/AppHeader.vue';
 
 <style>
 body {
+  background-image: url('./assets/bg.png');
+  background-repeat: no-repeat;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif;
 }
