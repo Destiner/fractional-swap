@@ -26,7 +26,7 @@
       />
     </div>
     <div class="button">
-      <button @click="swap">swap</button>
+      <SwapButton @click="swap" />
     </div>
   </div>
 </template>
@@ -40,6 +40,7 @@ import { BigNumber } from 'ethers';
 import { ref } from 'vue';
 
 import AssetModal from './AssetModal.vue';
+import SwapButton from './SwapButton.vue';
 import IconArrowDown from './icons/IconArrowDown.vue';
 
 import { EthereumService, ZeroExService, Quote } from '@/services';
@@ -115,37 +116,46 @@ async function swap() {
 .pair {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   padding: 16px;
-  border: 1px solid black;
+  border: 1px solid #ffffff2e;
   border-radius: 8px;
+  background: #ffffff40;
+  box-shadow: 0 8px 32px 0 #1f26872f;
+  backdrop-filter: blur(4px);
+  font-size: 16px;
 }
 
 .input,
 .output {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
 input {
-  width: 160px;
+  width: 200px;
   padding: 0;
   border: none;
   outline: none;
+  background: none;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .coin {
-  width: 80px;
+  width: 100px;
   padding: 4px;
   overflow: hidden;
+  border: 1px solid transparent;
   border-radius: 4px;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  cursor: pointer;
+  white-space: normal;
 }
 
-.coin:hover {
-  background: #eee;
+.output .coin:hover {
+  border-color: #aaa;
+  cursor: pointer;
 }
 
 .icon-wrapper {
@@ -159,14 +169,17 @@ input {
 }
 
 .amount-label {
-  width: 160px;
+  width: 200px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 20px;
+  font-weight: 700;
+  text-overflow: none;
   white-space: nowrap;
 }
 
 .button {
   display: flex;
   justify-content: center;
+  margin-top: 32px;
 }
 </style>
