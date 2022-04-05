@@ -55,7 +55,6 @@ const label = computed(() => {
 .icon {
   width: 16px;
   height: 16px;
-  border: 1px solid #333;
   border-radius: 50%;
   background: white;
 }

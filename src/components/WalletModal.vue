@@ -78,7 +78,6 @@ function disconnect() {
 .icon {
   width: 32px;
   height: 32px;
-  border: 1px solid #333;
   border-radius: 50%;
   background: white;
 }
