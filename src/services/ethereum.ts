@@ -5,14 +5,14 @@ import { Connector } from '@/stores/wallet';
 const CHAIN_ID = 1;
 
 class EthereumService {
-  address: string | undefined;
-  ens: string | undefined;
+  address: string | null;
+  ens: string | null;
   connector: Connector;
-  provider: providers.Web3Provider;
+  provider: providers.Web3Provider | null;
 
   constructor(connector: Connector) {
-    this.address = undefined;
-    this.ens = undefined;
+    this.address = null;
+    this.ens = null;
     this.connector = connector;
     this.provider = getProvider();
   }
@@ -31,7 +31,7 @@ class EthereumService {
   }
 
   async getBalance(): Promise<BigNumber | null> {
-    if (!this.address) {
+    if (!this.address || !this.provider) {
       return null;
     }
     return await this.provider.getBalance(this.address);
@@ -43,7 +43,10 @@ class EthereumService {
     gasPrice: BigNumber,
     data: string,
     value: BigNumber,
-  ): Promise<providers.TransactionReceipt> {
+  ): Promise<providers.TransactionReceipt | null> {
+    if (!this.provider) {
+      return null;
+    }
     const tx = await this.provider.getSigner().sendTransaction({
       to,
       gasLimit,
@@ -55,7 +58,10 @@ class EthereumService {
   }
 }
 
-function getProvider() {
+function getProvider(): providers.Web3Provider | null {
+  if (!window.ethereum) {
+    return null;
+  }
   return new providers.Web3Provider(window.ethereum, CHAIN_ID);
 }
 
