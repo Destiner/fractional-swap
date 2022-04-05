@@ -14,6 +14,10 @@
         class="option"
         @click="selectCollection(collection)"
       >
+        <img
+          class="icon"
+          :src="getCollectionIcon(collection)"
+        />
         {{ getCollectionTitle(collection) }}
       </div>
     </div>
@@ -43,7 +47,10 @@ import BaseModal from './BaseModal.vue';
 
 import { Vault } from '@/services';
 import { useNiftyStore } from '@/stores';
-import { getTitle as getCollectionTitle } from '@/utils/collections';
+import {
+  getTitle as getCollectionTitle,
+  getIcon as getCollectionIcon,
+} from '@/utils/collections';
 
 defineProps({
   open: {
@@ -95,12 +102,21 @@ function close() {
 }
 
 .option {
+  display: flex;
+  align-items: center;
   padding: 8px 4px;
   border-radius: 8px;
   cursor: pointer;
+  gap: 8px;
 }
 
 .option:hover {
   background: #eee;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
 }
 </style>
