@@ -43,6 +43,7 @@ import BaseModal from './BaseModal.vue';
 
 import { Vault } from '@/services';
 import { useNiftyStore } from '@/stores';
+import { getTitle as getCollectionTitle } from '@/utils/collections';
 
 defineProps({
   open: {
@@ -70,17 +71,6 @@ const activeVaults = computed(() => {
   return niftyStore.getVaults(activeCollection.value);
 });
 
-function getCollectionTitle(collection: string) {
-  const map: Record<string, string> = {
-    cryptopunks: 'Cryptopunks',
-    meebits: 'Meebits',
-    'bored-ape-yacht-club': 'Bored Ape Yacht Club',
-    'cool-cats': 'Cool Cats',
-    'pudgy-penguins': 'Pudgy Penguins',
-  };
-  return map[collection];
-}
-
 function selectCollection(newCollection: string) {
   activeCollection.value = newCollection;
 }
@@ -98,7 +88,7 @@ function close() {
 
 <style scoped>
 .body {
-  height: 360px;
+  height: 340px;
   padding: 4px;
   overflow-x: hidden;
   overflow-y: auto;
