@@ -60,31 +60,33 @@ function close() {
 .view {
   display: flex;
   position: fixed;
+  gap: 32px;
   top: 50vh;
   left: 50vw;
   flex-direction: column;
   min-width: 360px;
   max-width: 100%;
-  height: 520px;
   max-height: 80%;
-  padding: 8px;
+  padding: 16px;
   transform: translate(-50%, -50%);
   border: 1px solid #ccc;
   border-radius: 5px;
-  background: #fff;
+  background: #ffffffd0;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 8px 32px 0 #1f26875f;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
   padding: 0 8px;
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 </style>

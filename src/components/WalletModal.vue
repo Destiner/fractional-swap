@@ -7,19 +7,34 @@
     <div class="body">
       <div
         v-if="address"
-        class="meta"
+        class="wallet"
       >
-        <div class="icon">
-          <WalletIcon
-            :address="address"
-            :size="32"
-          />
+        <div class="meta">
+          <div class="wallet-icon">
+            <WalletIcon
+              :address="address"
+              :size="48"
+            />
+          </div>
+          <div class="details">
+            <div class="address">
+              {{ label }}
+            </div>
+            <div class="connector">
+              MetaMask
+            </div>
+          </div>
         </div>
-        <div class="address">
-          {{ label }}
+        <div class="actions">
+          <IconClipboard class="icon" />
+          <IconExternalLink class="icon" />
         </div>
       </div>
-      <button @click="disconnect">Disconnect</button>
+      <SButton
+        :label="'Disconnect'"
+        flat
+        @click="disconnect"
+      />
     </div>
   </BaseModal>
 </template>
@@ -31,7 +46,10 @@
 import { computed } from 'vue';
 
 import BaseModal from './BaseModal.vue';
+import SButton from './SButton.vue';
 import WalletIcon from './WalletIcon.vue';
+import IconClipboard from './icons/IconClipboard.vue';
+import IconExternalLink from './icons/IconExternalLink.vue';
 
 import { useWalletStore } from '@/stores';
 
@@ -68,17 +86,53 @@ function disconnect() {
   padding: 0 8px;
 }
 
-.meta {
+.wallet {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
 }
 
-.icon {
-  width: 32px;
-  height: 32px;
+.meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.wallet-icon {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: white;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.address {
+  font-size: 18px;
+}
+
+.connector {
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.icon:hover {
+  background: #ddd;
+
 }
 </style>

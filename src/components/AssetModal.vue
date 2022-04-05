@@ -96,8 +96,9 @@ function close() {
 }
 </script>
 
-<style>
+<style scoped>
 .body {
+  height: 360px;
   padding: 4px;
   overflow-x: hidden;
   overflow-y: auto;
