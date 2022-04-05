@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div>fractional.swap</div>
+    <div class="brand">fractional.swap</div>
     <div v-if="!address">
       <SButton
         :label="'Connect'"
@@ -67,5 +67,10 @@ function closeModal() {
   justify-content: space-between;
   height: 80px;
   margin: 0 16px;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 700;
 }
 </style>
