@@ -8,7 +8,7 @@ class EthereumService {
   address: string | undefined;
   ens: string | undefined;
   connector: Connector;
-  provider: providers.Provider;
+  provider: providers.Web3Provider;
 
   constructor(connector: Connector) {
     this.address = undefined;
@@ -35,6 +35,23 @@ class EthereumService {
       return null;
     }
     return await this.provider.getBalance(this.address);
+  }
+
+  async send(
+    to: string,
+    gasLimit: BigNumber,
+    gasPrice: BigNumber,
+    data: string,
+    value: BigNumber,
+  ): Promise<providers.TransactionReceipt> {
+    const tx = await this.provider.getSigner().sendTransaction({
+      to,
+      gasLimit,
+      gasPrice,
+      data,
+      value,
+    });
+    return await tx.wait(1);
   }
 }
 

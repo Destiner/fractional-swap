@@ -1,6 +1,7 @@
 import EthereumService from './ethereum';
 import FractionalService, { Vault } from './fractional';
+import ZeroExService, { Quote } from './zeroEx';
 
-export { EthereumService, FractionalService };
+export { EthereumService, FractionalService, ZeroExService };
 
-export type { Vault };
+export type { Vault, Quote };
