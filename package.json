@@ -16,6 +16,7 @@
     "lint:stylelint": "stylelint \"src/**/*.{css,vue}\""
   },
   "dependencies": {
+    "@fontsource/nunito": "^4.5.8",
     "@metamask/jazzicon": "^2.0.0",
     "ethers": "^5.6.2",
     "pinia": "^2.0.12",

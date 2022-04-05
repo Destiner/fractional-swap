@@ -9,6 +9,8 @@
   setup
   lang="ts"
 >
+import '@fontsource/nunito/variable.css';
+
 import AppHeader from '@/components/AppHeader.vue';
 </script>
 
@@ -17,7 +19,7 @@ body {
   background-image: url('./assets/bg.png');
   background-repeat: no-repeat;
   color: #333;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+  font-family: Nunito, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif;
 }
 
