@@ -6,10 +6,17 @@
         type="text"
         @input="handleInputChange"
       />
-      <div class="coin">ETH</div>
+      <div class="coin">
+        <img
+          class="coin-icon"
+          src="/assets/eth.svg"
+          alt="Ethereum logo"
+        />
+        ETH
+      </div>
     </div>
-    <div class="icon-wrapper">
-      <IconArrowDown class="icon" />
+    <div class="swap-direction-label">
+      <IconArrowDown class="arrow-icon" />
     </div>
     <div class="output">
       <div class="amount-label">{{ formatAmount(quote?.amountOut) }}</div>
@@ -144,6 +151,8 @@ input {
 }
 
 .coin {
+  display: flex;
+  align-items: center;
   width: 100px;
   padding: 4px;
   overflow: hidden;
@@ -151,6 +160,13 @@ input {
   border-radius: 4px;
   text-overflow: ellipsis;
   white-space: normal;
+  gap: 8px;
+}
+
+.coin-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }
 
 .output .coin:hover {
@@ -158,12 +174,12 @@ input {
   cursor: pointer;
 }
 
-.icon-wrapper {
+.swap-direction-label {
   display: flex;
   justify-content: center;
 }
 
-.icon {
+.arrow-icon {
   width: 16px;
   height: 16px;
 }
