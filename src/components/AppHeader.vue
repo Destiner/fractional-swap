@@ -2,7 +2,10 @@
   <div class="header">
     <div>fractional.swap</div>
     <div v-if="!address">
-      <button @click="connect">connect</button>
+      <SButton
+        :label="'Connect'"
+        @click="connect"
+      />
     </div>
     <div v-else>
       <WalletChip
@@ -23,6 +26,7 @@
 >
 import { computed, ref } from 'vue';
 
+import SButton from './SButton.vue';
 import WalletChip from './WalletChip.vue';
 import WalletModal from './WalletModal.vue';
 
@@ -61,7 +65,7 @@ function closeModal() {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 80px;
   margin: 0 16px;
 }
 </style>
