@@ -53,7 +53,10 @@
       <span v-else>&nbsp;</span>
     </div>
     <div class="button">
-      <SwapButton @click="swap" />
+      <SwapButton
+        :disabled="!swapAllowed"
+        @click="swap"
+      />
     </div>
   </div>
 </template>
@@ -71,7 +74,7 @@ import SwapButton from './SwapButton.vue';
 import IconArrowDown from './icons/IconArrowDown.vue';
 
 import { EthereumService, ZeroExService, Quote } from '@/services';
-import { useNiftyStore } from '@/stores';
+import { useNiftyStore, useWalletStore } from '@/stores';
 
 const props = defineProps({
   amountIn: {
@@ -86,15 +89,18 @@ const props = defineProps({
 
 const emit = defineEmits(['amount-in-change', 'asset-out-change']);
 
-const store = useNiftyStore();
+const niftyStore = useNiftyStore();
+const walletStore = useWalletStore();
+
+const address = computed(() => walletStore.address);
 
 const ethereumService = new EthereumService('metamask');
 const zeroExService = new ZeroExService();
 
 const vault = computed(() => {
-  const collections = store.collections;
+  const collections = niftyStore.collections;
   for (const collection of collections) {
-    const collectionVaults = store.getVaults(collection);
+    const collectionVaults = niftyStore.getVaults(collection);
     for (const vault of collectionVaults) {
       if (vault.address === props.assetOut) {
         return vault;
@@ -151,6 +157,19 @@ function formatShare(share: number) {
   });
   return valueFormat.format(share);
 }
+
+const swapAllowed = computed(() => {
+  if (!address.value) {
+    return false;
+  }
+  if (!props.assetOut) {
+    return false;
+  }
+  if (!quote.value) {
+    return false;
+  }
+  return true;
+});
 
 const isModalOpen = ref(false);
 

@@ -1,8 +1,23 @@
 <template>
-  <button>
+  <button
+    :class="{ disabled }"
+    :disabled="disabled"
+  >
     Swap
   </button>
 </template>
+
+<script
+  setup
+  lang="ts"
+>
+defineProps({
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+});
+</script>
 
 <style scoped>
 button {
@@ -20,5 +35,11 @@ button {
 
 button:hover {
   transform: translateY(-2px);
+}
+
+button.disabled {
+  background: grey;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 </style>
