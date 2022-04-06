@@ -119,7 +119,7 @@ function close() {
 }
 
 .option:hover {
-  background: #eee;
+  background: #e4e4e4;
 }
 
 .icon {
