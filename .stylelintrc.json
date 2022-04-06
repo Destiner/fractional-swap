@@ -8,6 +8,10 @@
     "string-quotes": "single",
     "declaration-colon-newline-after": null,
     "value-list-comma-newline-after": null,
+    "property-no-vendor-prefix": [
+      true,
+      { "ignoreProperties": ["backdrop-filter"] }
+    ],
     "indentation": 2
   }
 }
