@@ -49,6 +49,4 @@ class Service {
 
 export default Service;
 
-export type {
-  Quote,
-};
+export type { Quote };

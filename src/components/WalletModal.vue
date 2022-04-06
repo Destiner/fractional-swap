@@ -20,9 +20,7 @@
             <div class="address">
               {{ label }}
             </div>
-            <div class="connector">
-              MetaMask
-            </div>
+            <div class="connector">MetaMask</div>
           </div>
         </div>
         <div class="actions">
