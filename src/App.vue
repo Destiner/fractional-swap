@@ -18,9 +18,22 @@ import AppHeader from '@/components/AppHeader.vue';
 body {
   background-image: url('./assets/bg.png');
   background-repeat: no-repeat;
+  background-position-x: 100%;
   color: #333;
   font-family: Nunito, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif;
+}
+
+@media (max-width: 1023px) {
+  body {
+    background-position-x: -300px;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    background-position-x: -600px;
+  }
 }
 
 /* Reset */
