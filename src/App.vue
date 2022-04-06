@@ -16,7 +16,7 @@ import AppHeader from '@/components/AppHeader.vue';
 
 <style>
 body {
-  background-image: url('./assets/bg.png');
+  background-image: url('/assets/bg.png');
   background-repeat: no-repeat;
   background-position-x: 100%;
   color: #333;
