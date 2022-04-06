@@ -71,7 +71,7 @@ function close() {
   transform: translate(-50%, -50%);
   border: 1px solid #ccc;
   border-radius: 5px;
-  background: #ffffffd0;
+  background: #ffffffe0;
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   box-shadow: 0 8px 32px 0 #1f26875f;
