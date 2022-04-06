@@ -37,7 +37,6 @@ class FractionalService {
       page: 1,
       collections: [collection],
       liveSale: true,
-      closed: true,
       orderBy: 'popular',
     };
     const url = new URL(`${ENDPOINT}/vaults`);
