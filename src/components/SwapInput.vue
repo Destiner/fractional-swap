@@ -45,6 +45,13 @@
         @select="handleModalSelect"
       />
     </div>
+    <div class="label">
+      <span v-if="share">
+        You are buying {{ formatShare(share) }} of the NFT
+      </span>
+      <span v-else-if="share === 0">You are buying 0.0001% of the NFT</span>
+      <span v-else>&nbsp;</span>
+    </div>
     <div class="button">
       <SwapButton @click="swap" />
     </div>
@@ -73,7 +80,7 @@ const props = defineProps({
   },
   assetOut: {
     type: String,
-    required: true,
+    default: null,
   },
 });
 
@@ -112,6 +119,9 @@ async function handleInputChange(e: any) {
     return;
   }
   const assetOut = props.assetOut;
+  if (!assetOut) {
+    return;
+  }
   const swapQuote = await zeroExService.getQuote(amountIn, assetOut);
   quote.value = swapQuote;
 }
@@ -121,6 +131,25 @@ function formatAmount(amountOut: BigNumber | undefined): string {
     return '0';
   }
   return formatEther(amountOut);
+}
+
+const share = computed(() => {
+  const amountOut = quote.value?.amountOut;
+  const amountTotal = vault.value?.totalSupply;
+  if (!amountOut || !amountTotal) {
+    return null;
+  }
+  return amountOut.mul(1e6).div(amountTotal).toNumber() / 1e6;
+});
+
+function formatShare(share: number) {
+  const valueFormat = new Intl.NumberFormat('en-US', {
+    notation: 'compact',
+    style: 'percent',
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 4,
+  });
+  return valueFormat.format(share);
 }
 
 const isModalOpen = ref(false);
@@ -222,6 +251,11 @@ input {
   font-weight: 700;
   text-overflow: none;
   white-space: nowrap;
+}
+
+.label {
+  color: #666;
+  font-size: 14px;
 }
 
 .button {

@@ -1,3 +1,5 @@
+import { BigNumber } from 'ethers';
+
 const ENDPOINT = 'https://api-production.fractional.xyz';
 
 interface VaultResponse {
@@ -8,6 +10,7 @@ interface VaultResponse {
 interface VaultItem {
   contractAddress: string;
   nftCount: number;
+  supply: string;
   collectables: {
     tokenId: string;
     imageUrl: string;
@@ -21,6 +24,7 @@ interface VaultItem {
 
 interface Vault {
   address: string;
+  totalSupply: BigNumber;
   nft: {
     id: string;
     imageUrl: string;
@@ -48,10 +52,11 @@ class FractionalService {
     return data.data
       .filter((item) => item.nftCount === 1)
       .map((item) => {
-        const { contractAddress, collectables } = item;
+        const { contractAddress, supply, collectables } = item;
         const { tokenId, imageUrl, symbol, collection } = collectables[0];
         return {
           address: contractAddress,
+          totalSupply: BigNumber.from(supply),
           nft: {
             id: tokenId,
             imageUrl,
