@@ -24,7 +24,12 @@
         class="coin"
         @click="openModal"
       >
-        {{ assetOut }}
+        <img
+          class="coin-icon"
+          :src="vault?.nft.imageUrl"
+          alt="NFT image"
+        />
+        {{ vault?.nft.collection.symbol }}
       </div>
       <AssetModal
         :open="isModalOpen"
@@ -44,15 +49,16 @@
 >
 import { parseEther, formatEther } from '@ethersproject/units';
 import { BigNumber } from 'ethers';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 import AssetModal from './AssetModal.vue';
 import SwapButton from './SwapButton.vue';
 import IconArrowDown from './icons/IconArrowDown.vue';
 
 import { EthereumService, ZeroExService, Quote } from '@/services';
+import { useNiftyStore } from '@/stores';
 
-defineProps({
+const props = defineProps({
   amountIn: {
     type: String,
     required: true,
@@ -65,8 +71,23 @@ defineProps({
 
 const emit = defineEmits(['amount-in-change', 'asset-out-change']);
 
+const store = useNiftyStore();
+
 const ethereumService = new EthereumService('metamask');
 const zeroExService = new ZeroExService();
+
+const vault = computed(() => {
+  const collections = store.collections;
+  for (const collection of collections) {
+    const collectionVaults = store.getVaults(collection);
+    for (const vault of collectionVaults) {
+      if (vault.address === props.assetOut) {
+        return vault;
+      }
+    }
+  }
+  return null;
+});
 
 const quote = ref<Quote | null>(null);
 
@@ -153,7 +174,7 @@ input {
 .coin {
   display: flex;
   align-items: center;
-  width: 100px;
+  width: 110px;
   padding: 4px;
   overflow: hidden;
   border: 1px solid transparent;
