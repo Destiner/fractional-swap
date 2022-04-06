@@ -31,7 +31,15 @@
         class="option"
         @click="select(vault)"
       >
-        {{ vault.nft.id }}
+        <img
+          class="icon"
+          :src="vault.nft.imageUrl"
+          alt="NFT icon"
+        />
+        <div>
+          {{ vault.nft.collection.symbol }}
+          #{{ vault.nft.id }}
+        </div>
       </div>
     </div>
   </BaseModal>
