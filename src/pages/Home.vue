@@ -38,10 +38,8 @@ function handleAssetChange(newAsset: string) {
 onMounted(async () => {
   const collections = [
     'cryptopunks',
-    // 'meebits',
-    // 'bored-ape-yacht-club',
-    // 'cool-cats',
-    // 'pudgy-penguins',
+    'meebits',
+    'pudgy-penguins',
   ];
   for (const collection of collections) {
     const vaults = await fractionalService.listVaults(collection);
