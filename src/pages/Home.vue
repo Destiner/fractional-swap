@@ -29,7 +29,7 @@ function handleAmountChange(newAmount: string) {
   amountIn.value = newAmount;
 }
 
-const assetOut = ref<string | null>(null);
+const assetOut = ref<string | undefined>(undefined);
 
 function handleAssetChange(newAsset: string) {
   assetOut.value = newAsset;
