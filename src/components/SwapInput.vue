@@ -103,7 +103,7 @@ async function handleInputChange(e: any) {
     quote.value = null;
     return;
   }
-  const assetOut = '0x8cA9a0fbd8DB501F013F2e9e33a1B9dC129A48E0';
+  const assetOut = props.assetOut;
   const swapQuote = await zeroExService.getQuote(amountIn, assetOut);
   quote.value = swapQuote;
 }
