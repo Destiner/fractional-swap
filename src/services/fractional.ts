@@ -1,6 +1,7 @@
 import { BigNumber } from 'ethers';
 
-const ENDPOINT = 'https://cors-proxy-15xb.onrender.com/https://api-production.fractional.xyz';
+const ENDPOINT =
+  'https://cors-proxy-15xb.onrender.com/https://api-production.fractional.xyz';
 
 interface VaultResponse {
   status: boolean;
