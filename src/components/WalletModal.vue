@@ -133,6 +133,5 @@ function disconnect() {
 
 .icon:hover {
   background: #ddd;
-
 }
 </style>

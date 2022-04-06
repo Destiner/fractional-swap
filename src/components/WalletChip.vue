@@ -45,6 +45,7 @@ const label = computed(() => {
   box-shadow: 0 8px 32px 0 #1f26875f;
   font-size: 16px;
   cursor: pointer;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 

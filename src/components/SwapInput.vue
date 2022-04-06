@@ -189,6 +189,7 @@ async function swap() {
   border-radius: 8px;
   background: #ffffff40;
   box-shadow: 0 8px 32px 0 #1f26872f;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   font-size: 16px;
 }
