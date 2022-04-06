@@ -29,7 +29,7 @@ function handleAmountChange(newAmount: string) {
   amountIn.value = newAmount;
 }
 
-const assetOut = ref('0x8cA9a0fbd8DB501F013F2e9e33a1B9dC129A48E0');
+const assetOut = ref<string | null>(null);
 
 function handleAssetChange(newAsset: string) {
   assetOut.value = newAsset;

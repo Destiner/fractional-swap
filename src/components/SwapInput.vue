@@ -21,6 +21,14 @@
     <div class="output">
       <div class="amount-label">{{ formatAmount(quote?.amountOut) }}</div>
       <div
+        v-if="!assetOut"
+        class="coin"
+        @click="openModal"
+      >
+        Select
+      </div>
+      <div
+        v-else
         class="coin"
         @click="openModal"
       >
