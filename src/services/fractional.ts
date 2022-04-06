@@ -11,6 +11,7 @@ interface VaultItem {
   collectables: {
     tokenId: string;
     imageUrl: string;
+    symbol: string;
     collection: {
       slug: string;
       name: string;
@@ -24,6 +25,7 @@ interface Vault {
     id: string;
     imageUrl: string;
     collection: {
+      symbol: string;
       slug: string;
       name: string;
     };
@@ -47,13 +49,14 @@ class FractionalService {
       .filter((item) => item.nftCount === 1)
       .map((item) => {
         const { contractAddress, collectables } = item;
-        const { tokenId, imageUrl, collection } = collectables[0];
+        const { tokenId, imageUrl, symbol, collection } = collectables[0];
         return {
           address: contractAddress,
           nft: {
             id: tokenId,
             imageUrl,
             collection: {
+              symbol,
               slug: collection.slug,
               name: collection.name,
             },
