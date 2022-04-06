@@ -127,6 +127,8 @@ function closeModal() {
 
 function handleModalSelect(asset: string) {
   isModalOpen.value = false;
+  quote.value = null;
+  emit('amount-in-change', '0');
   emit('asset-out-change', asset);
 }
 
