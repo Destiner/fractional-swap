@@ -40,6 +40,11 @@ onMounted(async () => {
     'cryptopunks',
     'meebits',
     'pudgy-penguins',
+    'the-wanderers',
+    'artblocks',
+    'the-sandbox',
+    'cryptoadz',
+    'cryptodickbutts-s3',
   ];
   for (const collection of collections) {
     const vaults = await fractionalService.listVaults(collection);
